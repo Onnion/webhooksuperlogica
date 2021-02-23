@@ -14,7 +14,7 @@ app.use('/logs', express.static('logs'));
 const log = (json) => {
     const today = new Date();
     const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
-    const minuts = `${today.getSeconds()}:${today.getMinutes()}:${today.getHours()}`;
+    const minuts = `${today.getHours - 3()}:${today.getMinutes()}:${today.getSeconds()}`;
 
     fs.appendFileSync(path.join('./logs', `${date}.txt`), `${minuts}: \n${JSON.stringify(json)}\n\n`);
 }
