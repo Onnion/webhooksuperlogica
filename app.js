@@ -9,11 +9,11 @@ const router = express.Router();
 
 app.use(jsonParser);
 app.use(cors());
-app.use(express.static('logs'))
+app.use('/logs', express.static('logs'));
 
 const log = (json) => {
     const date = new Date();
-    const format = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+    const format = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
     fs.appendFileSync(path.join('./logs', `${format}.txt`), `${format}: \n${JSON.stringify(json)}\n\n`);
 }
 
