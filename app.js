@@ -12,9 +12,11 @@ app.use(cors());
 app.use('/logs', express.static('logs'));
 
 const log = (json) => {
-    const date = new Date();
-    const format = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
-    fs.appendFileSync(path.join('./logs', `${format}.txt`), `${format}: \n${JSON.stringify(json)}\n\n`);
+    const today = new Date();
+    const date = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+    const minuts = `${today.getSeconds()}:${today.getMinutes()}:${today.getHours()}`;
+
+    fs.appendFileSync(path.join('./logs', `${date}.txt`), `${minuts}: \n${JSON.stringify(json)}\n\n`);
 }
 
 router.post('/log', (req, res) => {
