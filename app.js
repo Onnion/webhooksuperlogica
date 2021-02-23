@@ -19,7 +19,7 @@ const log = (json) => {
     fs.appendFileSync(path.join('./logs', `${date}.txt`), `${minuts}: \n${JSON.stringify(json)}\n\n`);
 }
 
-router.post('/log', (req, res) => {
+router.post('/', (req, res) => {
     log(req.body);
     res.status(200).send({ "status": 200 });
 });
